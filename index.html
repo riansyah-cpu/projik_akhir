@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healty Food's</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Healty Food's</h1>
+        <nav>
+            <a href="#" onclick="loadpage('home')">Home</a>
+            <a href="#" onclick="loadpage('menu.html')">Menu</a>
+            <a href="#" onclick="loadpage('rencana_makan.html')">Rencana Makan</a>
+            <a href="#" onclick="loadpage('about.html')">About</a>
+            <a href="#" onclick="loadpage('favorite.html')"><img src="/assets/Fav_icon.png" alt="Favorite Icon"></a>
+            <a href="#" onclick="loadpage('user.html')"><img src="/assets/icon_logo.png" alt="User Icon"></a>
+        </nav>
+    </header>
+
+    <main id="content">
+        <!-- Konten halaman akan dimuat di sini -->
+    </main>
+
+    <footer>
+       <p>© 2025 Healty Food's. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function loadPage(page) {
+        fetch(`pages/${page}.html`)
+          .then(response => response.text())
+          .then(data => {
+           document.getElementById('content').innerHTML = data;
+          });
+      }
+    
+      // Cek apakah user sudah login
+      const isLoggedIn = localStorage.getItem("loggedIn");
+    
+      if (isLoggedIn) {
+        window.onload = () => loadPage("home");
+      } else {
+        window.onload = () => loadPage("login");
+      }
+    </script>
+
+</body>
+</html>

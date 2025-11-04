@@ -1,0 +1,38 @@
+<section class="login-container">
+  <h2>Login ke Healthy Food's</h2>
+  <form id="loginForm" class="login-form">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+    </div>
+
+    <button type="submit">Masuk</button>
+    <p class="register-text">Belum punya akun? <a href="#">Daftar</a></p>
+  </form>
+</section>
+
+<script>
+  // Ketika form dikirim
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // cegah reload halaman
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (username === "" || password === "") {
+      alert("Isi username dan password terlebih dahulu!");
+      return;
+    }
+
+    //Simpan status login agar tidak kembali ke login setelah refresh
+    localStorage.setItem("loggedIn", "true");
+
+    //Arahkan ke halaman utama
+    window.onload = () => loadPage("home");
+  });
+</script>
